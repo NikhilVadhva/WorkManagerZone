@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WorkManagerDemo</string>
+    <string name="startWork">Start Work</string>
 </resources>
