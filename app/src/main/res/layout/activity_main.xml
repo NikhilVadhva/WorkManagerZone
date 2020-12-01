@@ -7,17 +7,35 @@
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="150dp"
         android:id="@+id/btStart"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:foreground="?selectableItemBackgroundBorderless"
         android:text="@string/startWork"
         android:textAllCaps="false"
         android:textSize="16sp"
-        android:background="@color/colorAccent"
-        android:foreground="?selectableItemBackgroundBorderless"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btCancel"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:foreground="?selectableItemBackgroundBorderless"
+        android:text="@string/cancelWork"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.614" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
