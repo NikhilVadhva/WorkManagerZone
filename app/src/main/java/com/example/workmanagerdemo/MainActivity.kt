@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.work.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         OneTimeWorkRequest.Builder(NotificationWorker::class.java)
             .setInputData(data.build())
             .addTag("Notification")
+            .setBackoffCriteria(BackoffPolicy.LINEAR,OneTimeWorkRequest.MIN_BACKOFF_MILLIS,TimeUnit.MILLISECONDS)
             .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,15 +63,14 @@ class MainActivity : AppCompatActivity() {
                     else -> {
                         // do nothing
                     }
-
                 }
 
                 if (workInfo.state.isFinished)
-                    //Toast.makeText(this, "Notification Task Finished", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Notification Task Finished", Toast.LENGTH_LONG).show()
 
                     // receiving the input data
-                    Toast.makeText(this,"Received Data: "+workInfo.outputData.getString(NotificationWorker.TASK)
-                        ,Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this,"Received Data: "+workInfo.outputData.getString(NotificationWorker.TASK)
+//                        ,Toast.LENGTH_LONG).show()
             })
 
 

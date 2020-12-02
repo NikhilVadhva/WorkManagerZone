@@ -9,7 +9,6 @@ import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 
-
 class NotificationWorker(context: Context, workerParameters: WorkerParameters) :
     Worker(context, workerParameters) {
     companion object
@@ -19,7 +18,7 @@ class NotificationWorker(context: Context, workerParameters: WorkerParameters) :
     override fun doWork(): Result {
         val task   = inputData.getString(TASK) ?:return Result.failure()
         displayNotification("WorkMangerDemo", task)
-        return Result.success()
+        return Result.retry()
     }
 
     private fun displayNotification(title: String, task: String) {
