@@ -13,14 +13,24 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
 
     // passing input data
-    val data = Data.Builder()
+    private val data = Data.Builder()
         .putString(NotificationWorker.TASK, "Assigning Input data for NotificationTask")
+
+    // creating a constraints for charging required
+    private val constraints = Constraints.Builder()
+        .setRequiresCharging(true)
+        .build()
 
     var mWorkRequest: WorkRequest =
         OneTimeWorkRequest.Builder(NotificationWorker::class.java)
             .setInputData(data.build())
             .addTag("Notification")
-            .setBackoffCriteria(BackoffPolicy.LINEAR,OneTimeWorkRequest.MIN_BACKOFF_MILLIS,TimeUnit.MILLISECONDS)
+            .setConstraints(constraints)
+            .setBackoffCriteria(
+                BackoffPolicy.LINEAR,
+                OneTimeWorkRequest.MIN_BACKOFF_MILLIS,
+                TimeUnit.MILLISECONDS
+            )
             .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 if (workInfo.state.isFinished)
                     Toast.makeText(this, "Notification Task Finished", Toast.LENGTH_LONG).show()
 
-                    // receiving the input data
+                // receiving the input data
 //                    Toast.makeText(this,"Received Data: "+workInfo.outputData.getString(NotificationWorker.TASK)
 //                        ,Toast.LENGTH_LONG).show()
             })
